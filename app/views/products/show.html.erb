@@ -9,15 +9,14 @@
 $(function () {
   $(".js-next").on("click", function(ev) {
       ev.preventDefault();
-      var nextId = parseInt($(".js-next").data("id")) + 1;
-      console.log("nextId: "+nextId)
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
       $.getJSON("/products/" + nextId + "/product_data", function(data) {
           $(".productName").text(data["name"]);
           $(".productPrice").text(data["price"]);
           $(".productBodyDesc").text(data["description"]);
           $(".productBodyInv").text(data["inventory"]);
           // re-set the id to current on the link
-          $(".js-next").data("id", nextId);
+          $(".js-next").attr("data-id", data["id"]);
         });
     });
 });
